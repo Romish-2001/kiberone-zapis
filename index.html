@@ -120,15 +120,15 @@ button:active{transform:translateY(5px);box-shadow:0 3px 0 #d99a00}
       <div class="msg">Впишите номер телефона (не меньше 9 цифр)</div>
     </div>
 
-    <button type="submit">Отправить заявку</button>
-    <p class="note">Мы используем номер только чтобы связаться с вами по записи.</p>
+    <button type="submit">Отправить заявку в WhatsApp</button>
+    <p class="note">Откроется WhatsApp с готовым сообщением. Нажмите в нём «Отправить», чтобы заявка дошла до нас.</p>
   </form>
 
   <div class="done" id="done">
-    <div class="ok">✓</div>
-    <h2>Спасибо! Заявка готова</h2>
-    <p id="doneText">Мы свяжемся с вами в ближайшее время.</p>
-    <a class="wa" id="waLink" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a>
+    <div class="ok">!</div>
+    <h2>Остался последний шаг</h2>
+    <p id="doneText">Откроется WhatsApp с готовым сообщением. Нажмите в нём <b>«Отправить»</b>, иначе мы не получим вашу заявку.</p>
+    <a class="wa" id="waLink" href="#">Открыть WhatsApp и отправить</a>
     <pre id="preview"></pre>
   </div>
 </main>
@@ -166,6 +166,7 @@ f.addEventListener("submit", e => {
   f.style.display = "none";
   $("done").style.display = "block";
   window.scrollTo({top:0,behavior:"smooth"});
+  if(WHATSAPP_NUMBER){ setTimeout(() => { window.location.href = wa.href; }, 600); }
 });
 ["name","age","phone"].forEach(id => $(id).addEventListener("input", () => $("g-"+(id)).classList.remove("bad")));
 f.querySelectorAll("input[name=days]").forEach(r => r.addEventListener("change", () => $("g-days").classList.remove("bad")));
