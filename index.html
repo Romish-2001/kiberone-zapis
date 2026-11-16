@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Запись на уроки KIBERone после школы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b1446; --violet:#5b3df5; --violet-d:#3b22c9; --sun:#ffb800; --mint:#19c37d;
+  --bg:#f4f2ff; --card:#ffffff; --muted:#6b6790; --line:#e2defa; --err:#e5384f;
+  --r:20px;
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(150deg,#2a1a8f 0%,var(--violet) 60%,#8a5cff 100%);color:#fff;padding:36px 20px 90px;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero::before{width:260px;height:260px;right:-80px;top:-70px}
+.hero::after{width:160px;height:160px;left:-50px;bottom:-60px;background:rgba(255,184,0,.18)}
+.wrap{max-width:560px;margin:0 auto;position:relative;z-index:1}
+.brand{display:inline-flex;align-items:center;gap:8px;font-family:Unbounded,sans-serif;font-weight:800;font-size:15px;letter-spacing:.02em}
+.brand i{width:26px;height:26px;border-radius:8px;background:var(--sun);display:inline-block}
+h1{font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(26px,7vw,36px);line-height:1.15;margin:22px 0 12px;text-wrap:balance}
+.lead{font-size:16px;opacity:.9;max-width:44ch}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.fact{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:12px 10px;text-align:center}
+.fact b{display:block;font-family:Unbounded,sans-serif;font-size:17px}
+.fact span{font-size:12px;opacity:.85}
+.fact.price{background:var(--sun);color:var(--ink);border-color:var(--sun)}
+.card{background:var(--card);border-radius:24px;padding:24px 20px;margin:-60px 16px 40px;box-shadow:0 20px 50px -20px rgba(43,26,143,.35);position:relative;z-index:2}
+@media(min-width:592px){.card{margin-left:auto;margin-right:auto;max-width:560px;padding:32px}}
+.card h2{font-family:Unbounded,sans-serif;font-size:18px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.field{margin-bottom:18px}
+label.t,.t{display:block;font-weight:800;font-size:14px;margin-bottom:8px}
+input[type=text],input[type=tel],select{width:100%;font:inherit;font-size:16px;padding:14px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%235b3df5' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+input:focus,select:focus{border-color:var(--violet);box-shadow:0 0 0 4px rgba(91,61,245,.15)}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.field.bad .opt{border-color:var(--err)}
+.msg{display:none;color:var(--err);font-size:13px;font-weight:600;margin-top:6px}
+.field.bad .msg{display:block}
+.opts{display:grid;gap:10px}
+.opt{display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt div{border:2px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;transition:all .15s;background:#fff}
+.opt .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center}
+.opt strong{display:block;font-size:15px}
+.opt small{color:var(--muted);font-size:13px}
+.opt input:checked+div{border-color:var(--violet);background:#f1eeff}
+.opt input:checked+div .dot{border-color:var(--violet);background:var(--violet);box-shadow:inset 0 0 0 4px #f1eeff}
+.opt input:focus-visible+div{box-shadow:0 0 0 4px rgba(91,61,245,.2)}
+button{font:inherit;font-weight:800;font-size:17px;width:100%;border:0;border-radius:16px;padding:17px;background:var(--sun);color:var(--ink);cursor:pointer;box-shadow:0 8px 0 #d99a00;transition:transform .1s,box-shadow .1s;margin-top:6px}
+button:active{transform:translateY(5px);box-shadow:0 3px 0 #d99a00}
+.note{text-align:center;color:var(--muted);font-size:12.5px;margin-top:18px}
+.done{display:none;text-align:center;padding:12px 0}
+.done .ok{width:72px;height:72px;border-radius:50%;background:var(--mint);color:#fff;font-size:38px;display:grid;place-items:center;margin:0 auto 16px}
+.done h2{font-size:20px;margin-bottom:8px}
+.done p{color:var(--muted)}
+.done .wa{display:inline-block;margin-top:18px;background:#25d366;color:#fff;text-decoration:none;font-weight:800;border-radius:14px;padding:14px 22px}
+.done pre{white-space:pre-wrap;text-align:left;background:var(--bg);border-radius:12px;padding:12px;font:inherit;font-size:14px;margin-top:14px}
+@media(prefers-color-scheme:dark){
+ :root{--ink:#efecff;--bg:#120d33;--card:#1d1650;--line:#38307a;--muted:#a9a3d6}
+ input[type=text],input[type=tel],select,.opt div{background:#17114a;color:var(--ink)}
+ .opt input:checked+div{background:#2b2276}
+ .opt input:checked+div .dot{box-shadow:inset 0 0 0 4px #2b2276}
+ .fact.price{color:#1b1446}
+ button{color:#1b1446}
+}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="brand"><i></i>KIBERone</div>
+  <h1>Уроки после школы: запишите ребёнка</h1>
+  <p class="lead">Занятия сразу после школьных уроков. Оставьте контакты, и мы свяжемся с вами.</p>
+  <div class="facts">
+    <div class="fact"><b>2 раза</b><span>в неделю</span></div>
+    <div class="fact"><b>16:00–17:30</b><span>1 ч 30 мин</span></div>
+    <div class="fact price"><b>750</b><span>сомони в месяц</span></div>
+  </div>
+</div></header>
+
+<main class="card">
+  <form id="f" novalidate>
+    <h2>Заявка на запись</h2>
+    <p class="sub">Это займёт меньше минуты.</p>
+
+    <div class="field" id="g-name">
+      <label class="t" for="name">Имя и фамилия ребёнка</label>
+      <input type="text" id="name" autocomplete="off" placeholder="Например: Алишер Рахимов">
+      <div class="msg">Впишите имя и фамилию ребёнка</div>
+    </div>
+
+    <div class="field" id="g-age">
+      <label class="t" for="age">Сколько лет ребёнку?</label>
+      <select id="age">
+        <option value="">Выберите возраст</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+        <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+      </select>
+      <div class="msg">Выберите возраст</div>
+    </div>
+
+    <div class="field" id="g-days">
+      <span class="t">Какие дни вам подходят?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="days" value="Вторник и среда (средняя группа)"><div><span class="dot"></span><span><strong>Вторник и среда</strong><small>Средняя группа · 16:00–17:30</small></span></div></label>
+        <label class="opt"><input type="radio" name="days" value="Четверг и пятница (старшая группа)"><div><span class="dot"></span><span><strong>Четверг и пятница</strong><small>Старшая группа · 16:00–17:30</small></span></div></label>
+        <label class="opt"><input type="radio" name="days" value="Подходят оба варианта"><div><span class="dot"></span><span><strong>Подходят оба варианта</strong><small>Подберём группу по возрасту</small></span></div></label>
+      </div>
+      <div class="msg">Выберите удобные дни</div>
+    </div>
+
+    <div class="field" id="g-phone">
+      <label class="t" for="phone">Номер телефона / WhatsApp родителя</label>
+      <input type="tel" id="phone" inputmode="tel" autocomplete="tel" placeholder="+992 900 00 00 00">
+      <div class="msg">Впишите номер телефона (не меньше 9 цифр)</div>
+    </div>
+
+    <button type="submit">Отправить заявку</button>
+    <p class="note">Мы используем номер только чтобы связаться с вами по записи.</p>
+  </form>
+
+  <div class="done" id="done">
+    <div class="ok">✓</div>
+    <h2>Спасибо! Заявка готова</h2>
+    <p id="doneText">Мы свяжемся с вами в ближайшее время.</p>
+    <a class="wa" id="waLink" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a>
+    <pre id="preview"></pre>
+  </div>
+</main>
+
+<script>
+// Номер менеджера для WhatsApp, куда придёт заявка. Формат: только цифры, с кодом страны (например 992900000000).
+const WHATSAPP_NUMBER = "992175604702";
+
+const $ = id => document.getElementById(id);
+const f = $("f");
+function setBad(g, bad){ $(g).classList.toggle("bad", bad); return !bad; }
+
+f.addEventListener("submit", e => {
+  e.preventDefault();
+  const name = $("name").value.trim().replace(/\s+/g," ");
+  const age = $("age").value;
+  const day = (f.querySelector("input[name=days]:checked")||{}).value;
+  const phone = $("phone").value.trim();
+  const digits = phone.replace(/\D/g,"");
+  const ok = [
+    setBad("g-name", name.split(" ").length < 2 || name.length < 4),
+    setBad("g-age", !age),
+    setBad("g-days", !day),
+    setBad("g-phone", digits.length < 9)
+  ].every(Boolean);
+  if(!ok){ const first = document.querySelector(".field.bad"); first && first.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+
+  const text = "Заявка на уроки KIBERone\n" +
+    "Ребёнок: " + name + "\nВозраст: " + age + " лет\nДни: " + day + "\nТелефон/WhatsApp родителя: " + phone;
+  $("preview").textContent = text;
+  const wa = $("waLink");
+  if(WHATSAPP_NUMBER){
+    wa.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+  } else { wa.style.display = "none"; }
+  f.style.display = "none";
+  $("done").style.display = "block";
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+["name","age","phone"].forEach(id => $(id).addEventListener("input", () => $("g-"+(id)).classList.remove("bad")));
+f.querySelectorAll("input[name=days]").forEach(r => r.addEventListener("change", () => $("g-days").classList.remove("bad")));
+</script>
+</body>
+</html>
